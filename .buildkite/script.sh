@@ -11,7 +11,7 @@ echo "$PullRequestBranch"
 echo "$PullRequest"
 echo "$RecentCommit"
 
-git diff --stat "$BaseBranch".."$RecentCommit"
+echo git diff --stat "$BaseBranch".."$RecentCommit"
 
 if ! git diff --name-only "$BaseBranch".."$RecentCommit" | grep -qvE '(.md)'; then
   echo "Only doc files were updated, not running the CI."
