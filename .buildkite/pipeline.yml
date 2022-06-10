@@ -1,0 +1,3 @@
+steps:
+  - label: ":pipeline:"
+    command: ".buildkite/script.sh"
