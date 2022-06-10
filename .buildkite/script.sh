@@ -4,14 +4,16 @@ set -euo pipefail
 BaseBranch=$BUILDKITE_PULL_REQUEST_BASE_BRANCH
 PullRequestBranch=$BUILDKITE_BRANCH
 PullRequest=$BUILDKITE_PULL_REQUEST
+RecentCommit=$BUILDKITE_COMMIT
 
 echo "$BaseBranch"
 echo "$PullRequestBranch"
-echo
+echo "$PullRequest"
+echo "$RecentCommit"
 
 git diff --stat "$BaseBranch"
 
-if ! git diff --name-only "$BaseBranch".."$PullRequest" | grep -qvE '(.md)'; then
+if ! git diff --name-only "$BaseBranch".."$RecentCommit" | grep -qvE '(.md)'; then
   echo "Only doc files were updated, not running the CI."
   exit
 fi
